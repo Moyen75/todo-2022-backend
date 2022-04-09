@@ -35,6 +35,7 @@ postTask = async (req, res, next) => {
 }
 updateTask = async (req, res, next) => {
     try {
+        console.log(req.body)
         const { id } = req.params;
         const query = { id: Number(id) }
         const task = await mongo.updateData('tasks', query, { ...req.body })
@@ -58,7 +59,7 @@ deleteTask = async (req, res, next) => {
 router.get("/tasks", getTasks)
 router.post('/task', postTask)
 router.get('/singleTask/:id', getTask)
-router.put("/task/:id", updateTask)
+router.put("/taskUpdate/:id", updateTask)
 router.delete("/taskDelete/:id", deleteTask)
 
 module.exports = router;
