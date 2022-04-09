@@ -38,7 +38,7 @@ updateTask = async (req, res, next) => {
         console.log(req.body)
         const { id } = req.params;
         const query = { id: Number(id) }
-        const task = await mongo.updateData('tasks', query, { ...req.body })
+        const task = await mongo.updateData('tasks', query, { $set: { ...req.body } })
         return res.status(200).json({ success: true, task });
     } catch (error) {
         console.log(error);
