@@ -16,8 +16,7 @@ getTasks = async (req, res, next) => {
 getTask = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const query = { id: Number(id) }
-        const task = await mongo.fetchOne("tasks", query);
+        const task = await mongo.fetchOne("tasks", { id });
         return res.status(200).json({ success: true, task });
     } catch (error) {
         console.log(error);
@@ -36,8 +35,7 @@ postTask = async (req, res, next) => {
 updateTask = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const query = { id: Number(id) }
-        const task = await mongo.updateData('tasks', query, { ...req.body })
+        const task = await mongo.updateData('tasks', { id }, { ...req.body })
         return res.status(200).json({ success: true, task });
     } catch (error) {
         console.log(error);
@@ -47,8 +45,7 @@ updateTask = async (req, res, next) => {
 deleteTask = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const query = { id: Number(id) }
-        const task = await mongo.deleteData('tasks', query)
+        const task = await mongo.deleteData('tasks', { id })
         return res.status(200).json({ success: true, task });
     } catch (error) {
         console.log(error);
