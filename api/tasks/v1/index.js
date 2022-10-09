@@ -38,7 +38,9 @@ updateTask = async (req, res, next) => {
         console.log(req.body)
         const { id } = req.params;
         const query = { id: Number(id) }
-        const task = await mongo.updateData('tasks', query, { $set: { ...req.body } })
+        const oldTask = await mongo.fetchOne("tasks", query)
+        const reminder = !oldTask.reminder;
+        const task = await mongo.updateData('tasks', query, { $set: { reminder } })
         return res.status(200).json({ success: true, task });
     } catch (error) {
         console.log(error);
