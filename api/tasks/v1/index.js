@@ -57,7 +57,7 @@ deleteTask = async (req, res, next) => {
     }
 }
 router.get("/tasks", getTasks)
-router.post('/task', postTask)
+router.post('/tasks', postTask)
 router.get('/singleTask/:id', getTask)
 router.put("/taskUpdate/:id", updateTask)
 router.delete("/taskDelete/:id", deleteTask)
